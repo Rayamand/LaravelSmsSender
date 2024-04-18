@@ -26,10 +26,9 @@ class SendSmsCommand extends Command
      */
     public function handle()
     {
-        $sms = new SmsSender();
-        $sender = $sms->sender;
+        $sender = new SmsSender();
         // dd($sender->sned("1234", ["to" => "09106125186"]));
-        // dd($sender->send("1234", ["to" => "09106125186"]));
-        dd($sender->report(678270935));
+        dd($sender->send("1234", ["to" => "09106125186"]));
+        // dd($sender->report(678270935));
     }
 }

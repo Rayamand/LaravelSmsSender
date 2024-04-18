@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 class SmsSender
 {
     private $provider;
-    public $sender;
+    private $sender;
     function __construct()
     {
         $this->provider = config("sms.default");
@@ -16,5 +16,14 @@ class SmsSender
         if (!$config)
             throw new \Exception("SMS Provider is not defined");
         $this->sender = new $class($config);
+    }
+    public function send(...$prop)
+    {
+        return $this->sender->send(...$prop);
+    }
+
+    public function report(...$prop)
+    {
+        return $this->sender->report(...$prop);
     }
 }
