@@ -2,10 +2,10 @@
 namespace App\Services\SmsSender\providers;
 
 use App\Services\SmsSender\src\SmsResponse;
-use App\Services\SmsSender\src\SmsSenderParent;
+use App\Services\SmsSender\src\SmsService;
 use GuzzleHttp\Client;
 
-class Melipayamak extends SmsSenderParent
+class Melipayamak extends SmsService
 {
     use SmsResponse;
     public function send(string $message, array $data)

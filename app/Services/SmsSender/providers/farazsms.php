@@ -2,10 +2,10 @@
 namespace App\Services\SmsSender\providers;
 
 use App\Services\SmsSender\src\SmsResponse;
-use App\Services\SmsSender\src\SmsSenderParent;
+use App\Services\SmsSender\src\SmsService;
 use GuzzleHttp\Client;
 
-class Farazsms extends SmsSenderParent
+class Farazsms extends SmsService
 {
     use SmsResponse;
     public function send(string $message, array $data)
@@ -18,7 +18,7 @@ class Farazsms extends SmsSenderParent
                 "pass" => $this->config['password'],
                 "fromNum" => $this->config['number'],
                 "toNum" => $data['to'],
-                "patternCode" => "pvnhpxfqlaivlw6",
+                "patternCode" => $data['pattern'],
                 "inputData" => [
                     ["verification-code" => $message]
                 ]

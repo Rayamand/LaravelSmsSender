@@ -2,7 +2,7 @@
 namespace App\Services\SmsSender\src;
 
 
-abstract class SmsSenderParent
+abstract class SmsService
 {
     use SmsResponse;
     function __construct(protected array $config = [])

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Services\Messaging\MessagingService;
 use App\Services\SmsSender\SmsSender;
 use Illuminate\Console\Command;
 
@@ -12,7 +13,7 @@ class SendSmsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'send-sms';
+    protected $signature = 'send-sms {--recepient=09125591174} {--text= Text of message}';
 
     /**
      * The console command description.
@@ -24,11 +25,10 @@ class SendSmsCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(MessagingService $messagingService)
     {
-        $sender = new SmsSender();
-        // dd($sender->sned("1234", ["to" => "09106125186"]));
-        dd($sender->send("1234", ["to" => "09106125186"]));
-        // dd($sender->report(678270935));
+        $recepient = $this->option('recepient');
+        $text = $this->option('text');
+        $messagingService->send($recepient, $text);
     }
 }
